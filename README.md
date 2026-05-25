@@ -40,3 +40,32 @@ catalog/*.json
   ↓
 docs / dashboard / reports
 ```
+
+## ディレクトリ構成
+
+```txt
+examples/
+  devices/
+    <device-id>/
+      README.md
+      metadata.md
+      platforms/
+        <platform>/
+          README.md
+          src/
+
+docs/
+  HonKit 用ドキュメント
+
+catalog/
+  生成された JSON catalog
+
+upstream/
+  同期元リポジトリ定義
+
+generated/
+  upstream の raw mirror とレポート
+
+tools/
+  同期・生成・検証スクリプト
+```
