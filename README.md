@@ -1,1 +1,6 @@
-# chirimen-example-catalog
+# CHIRIMEN Example Catalog
+
+CHIRIMEN Example Catalog は、CHIRIMEN 関連リポジトリに散在している Example（サンプルコード）を収集・分類・比較するための実験的なカタログリポジトリです。
+
+このリポジトリは、既存の CHIRIMEN 公式リポジトリを置き換えるものではありません。  
+同じデバイスのサンプルコードが複数のリポジトリに存在している状態を可視化し、将来的な整理・移行・ドキュメント化のための土台を作ることを目的としています。
