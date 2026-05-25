@@ -12,3 +12,4 @@ pnpm-debug.log*
 # generated local cache
 .tmp/
 .cache/
+.pnpm-store/
