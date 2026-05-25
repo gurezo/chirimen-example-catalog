@@ -105,6 +105,10 @@ pnpm duplicates:detect
 pnpm validate
 ```
 
+## コントリビューション
+
+デバイス追加や `metadata.md` の更新手順は [CONTRIBUTING.md](CONTRIBUTING.md) を参照してください。
+
 ## ライセンス
 
 このリポジトリ自体は MIT License です。
