@@ -1,4 +1,6 @@
 packages:
   - "tools/*"
+allowBuilds:
+  esbuild: true
 
 minimumReleaseAge: 1440
