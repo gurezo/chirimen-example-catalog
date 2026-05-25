@@ -69,3 +69,17 @@ generated/
 tools/
   同期・生成・検証スクリプト
 ```
+
+## Platform 一覧
+
+| Platform          | 説明                                   |
+| ----------------- | -------------------------------------- |
+| `pizero-esm`      | `chirimen.org/pizero/src/esm-examples` |
+| `raspi-node`      | `chirimen-drivers/raspi-examples`      |
+| `node`            | `chirimen-drivers/node-examples`       |
+| `microbit-driver` | `chirimen-drivers/microbit-examples`   |
+| `microbit-web`    | `chirimen-micro-bit/examples`          |
+| `legacy-gc-gpio`  | `chirimen/gc/gpio`                     |
+| `legacy-gc-i2c`   | `chirimen/gc/i2c`                      |
+| `remote`          | `remote-connection/examples`           |
+| `pre-arranged`    | `pre-arrangement-contributions`        |
