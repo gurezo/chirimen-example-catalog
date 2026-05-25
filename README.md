@@ -83,3 +83,24 @@ tools/
 | `legacy-gc-i2c`   | `chirimen/gc/i2c`                      |
 | `remote`          | `remote-connection/examples`           |
 | `pre-arranged`    | `pre-arrangement-contributions`        |
+
+## 開発環境
+
+- Node.js v24.x
+- pnpm v11.x
+
+```bash
+pnpm install
+```
+
+## 主なコマンド
+
+```bash
+pnpm metadata:validate
+pnpm catalog:generate
+pnpm docs:generate
+pnpm docs:build
+pnpm sync:upstreams
+pnpm duplicates:detect
+pnpm validate
+```
