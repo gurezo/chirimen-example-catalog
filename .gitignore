@@ -1,0 +1,14 @@
+node_modules/
+public/
+.honkit/
+.book/
+.DS_Store
+
+# logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# generated local cache
+.tmp/
+.cache/
