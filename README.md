@@ -104,3 +104,10 @@ pnpm sync:upstreams
 pnpm duplicates:detect
 pnpm validate
 ```
+
+## ライセンス
+
+このリポジトリ自体は MIT License です。
+
+ただし、upstream から取り込むサンプルコードは、元リポジトリのライセンスと著作権表示を尊重します。  
+取り込んだファイルの出典は `metadata.md` と `generated/reports/` に記録します。
