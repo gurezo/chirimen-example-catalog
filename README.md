@@ -111,5 +111,7 @@ pnpm validate
 
 このリポジトリ自体は MIT License です。
 
+詳細は [NOTICE.md](NOTICE.md) を参照してください。
+
 ただし、upstream から取り込むサンプルコードは、元リポジトリのライセンスと著作権表示を尊重します。  
 取り込んだファイルの出典は `metadata.md` と `generated/reports/` に記録します。
