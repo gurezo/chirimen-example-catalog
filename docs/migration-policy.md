@@ -1,0 +1,39 @@
+# 移行ポリシー
+
+CHIRIMEN 関連リポジトリに散在している Example を整理するための方針です。
+
+## 責務分離
+
+- **chirimen-device-dashboard**: デバイス情報の正本
+- **chirimen-example-catalog**（本 repo）: Example 情報の正本
+
+デバイス本体の商品情報や回路図は device-dashboard を更新してください。本 repo では Example の所在と状態を管理します。
+
+## 基本方針
+
+既存リポジトリを置き換えません。散在する Example を収集・分類・比較し、primary / legacy / archive / special / incubator を可視化します。
+
+## 優先順位
+
+| 優先度 | 種別 | Platform | 対象 |
+|---|---|---|---|
+| 1 | primary | `pizero-esm` | `chirimen.org/pizero/src/esm-examples` |
+| 2 | legacy | `raspi-node` | `chirimen-drivers/raspi-examples` |
+| 3 | legacy | `node` | `chirimen-drivers/node-examples` |
+| 4 | legacy | `microbit-driver` | `chirimen-drivers/microbit-examples` |
+| 5 | legacy | `microbit-web` | `chirimen-micro-bit/examples` |
+| 6 | archive | `legacy-gc-gpio`, `legacy-gc-i2c` | `chirimen/gc/gpio`, `chirimen/gc/i2c` |
+| 7 | incubator | `pre-arranged` | `pre-arrangement-contributions` |
+| 8 | special | `remote` | `remote-connection/examples` |
+
+## primary / legacy / archive / incubator / special
+
+（各状態の定義は従来どおり。実機確認していないサンプルは推奨扱いにしない。）
+
+## Device Dashboard との連携
+
+各 `metadata.md` には Device Dashboard の URL を記載し、デバイス詳細はそちらを参照します。
+
+## 実機確認
+
+推奨 Example にする場合は、確認日・確認者・使用 platform・使用デバイスを記録します。
