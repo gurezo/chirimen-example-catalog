@@ -64,9 +64,11 @@ examples/devices/<device-id>/
 upstream/sources.yaml
 catalog/          # examples.json, platforms.json, device-example-map.json, upstreams.json
 docs/             # HonKit 用ドキュメント
-generated/        # upstream mirror とレポート
+generated/        # upstream mirror とレポート（自動生成、原則手動編集しない）
 tools/            # 同期・生成・検証スクリプト
 ```
+
+`generated/upstreams/` には upstream の raw mirror（`pnpm sync:upstreams`）を置きます。`generated/reports/` には検証・同期レポート（例: `pnpm duplicates:detect`）を置きます。いずれも tools から生成されるため、原則として手動編集しません。レポートの一覧と注意事項は [generated/reports/README.md](generated/reports/README.md) を参照してください。
 
 ## Platform 一覧
 
