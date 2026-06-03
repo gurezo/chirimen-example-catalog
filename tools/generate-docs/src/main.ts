@@ -1,5 +1,6 @@
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { generateAppendixDocs } from "./generate-appendix-docs.js";
 import { generateDeviceDocs } from "./generate-device-docs.js";
 import { generatePlatformDocs } from "./generate-platform-docs.js";
 import { loadCatalog } from "./load-catalog.js";
@@ -25,6 +26,11 @@ async function main(): Promise<void> {
   const platformResult = await generatePlatformDocs(catalog, repoRoot);
   console.log(
     `Platform docs: ${platformResult.written} written, ${platformResult.skipped} unchanged`,
+  );
+
+  const appendixResult = await generateAppendixDocs(catalog, repoRoot);
+  console.log(
+    `Appendix docs: ${appendixResult.written} written, ${appendixResult.skipped} unchanged`,
   );
 }
 
