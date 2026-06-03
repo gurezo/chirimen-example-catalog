@@ -8,6 +8,7 @@
     "pnpm": ">=11 <12"
   },
   "scripts": {
+    "device:create": "tsx tools/create-device/src/main.ts",
     "sync:upstreams": "tsx tools/sync-upstreams/src/main.ts",
     "catalog:generate": "tsx tools/generate-catalog/src/main.ts",
     "docs:generate": "tsx tools/generate-docs/src/main.ts",
