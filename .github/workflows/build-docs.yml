@@ -1,0 +1,55 @@
+name: Build docs
+
+on:
+  pull_request:
+    paths:
+      - "docs/**"
+      - "examples/devices/**/metadata.md"
+      - "catalog/**"
+      - "tools/generate-docs/**"
+      - "package.json"
+      - "pnpm-lock.yaml"
+      - "pnpm-workspace.yaml"
+      - ".github/workflows/build-docs.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "docs/**"
+      - "examples/devices/**/metadata.md"
+      - "catalog/**"
+      - "tools/generate-docs/**"
+      - "package.json"
+      - "pnpm-lock.yaml"
+      - "pnpm-workspace.yaml"
+      - ".github/workflows/build-docs.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-docs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Generate docs
+        run: pnpm docs:generate
+
+      - name: Build HonKit
+        run: pnpm docs:build
