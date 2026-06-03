@@ -1,0 +1,74 @@
+[
+  {
+    "id": "chirimen-drivers-microbit",
+    "repo": "chirimen-oh/chirimen-drivers",
+    "branch": "master",
+    "path": "microbit-examples",
+    "platform": "microbit-driver",
+    "priority": "legacy"
+  },
+  {
+    "id": "chirimen-drivers-node",
+    "repo": "chirimen-oh/chirimen-drivers",
+    "branch": "master",
+    "path": "node-examples",
+    "platform": "node",
+    "priority": "legacy"
+  },
+  {
+    "id": "chirimen-drivers-raspi",
+    "repo": "chirimen-oh/chirimen-drivers",
+    "branch": "master",
+    "path": "raspi-examples",
+    "platform": "raspi-node",
+    "priority": "legacy"
+  },
+  {
+    "id": "chirimen-gc-gpio",
+    "repo": "chirimen-oh/chirimen",
+    "branch": "master",
+    "path": "gc/gpio",
+    "platform": "legacy-gc-gpio",
+    "priority": "archive"
+  },
+  {
+    "id": "chirimen-gc-i2c",
+    "repo": "chirimen-oh/chirimen",
+    "branch": "master",
+    "path": "gc/i2c",
+    "platform": "legacy-gc-i2c",
+    "priority": "archive"
+  },
+  {
+    "id": "chirimen-micro-bit-examples",
+    "repo": "chirimen-oh/chirimen-micro-bit",
+    "branch": "master",
+    "path": "examples",
+    "platform": "microbit-web",
+    "priority": "legacy"
+  },
+  {
+    "id": "chirimen-org-pizero-esm",
+    "repo": "chirimen-oh/chirimen.org",
+    "branch": "master",
+    "path": "pizero/src/esm-examples",
+    "platform": "pizero-esm",
+    "priority": "primary"
+  },
+  {
+    "id": "pre-arrangement-contributions",
+    "repo": "chirimen-oh/pre-arrangement-contributions",
+    "branch": "main",
+    "path": ".",
+    "platform": "pre-arranged",
+    "priority": "incubator"
+  },
+  {
+    "id": "remote-connection-examples",
+    "repo": "chirimen-oh/remote-connection",
+    "branch": "master",
+    "path": "examples",
+    "platform": "remote",
+    "priority": "special"
+  }
+]

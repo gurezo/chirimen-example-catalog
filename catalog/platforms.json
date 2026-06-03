@@ -1,0 +1,38 @@
+[
+  {
+    "id": "legacy-gc-gpio",
+    "description": "旧 CHIRIMEN GPIO examples"
+  },
+  {
+    "id": "legacy-gc-i2c",
+    "description": "旧 CHIRIMEN I2C examples"
+  },
+  {
+    "id": "microbit-driver",
+    "description": "chirimen-drivers 側の micro:bit examples"
+  },
+  {
+    "id": "microbit-web",
+    "description": "chirimen-micro-bit の examples"
+  },
+  {
+    "id": "node",
+    "description": "Node.js 向け examples"
+  },
+  {
+    "id": "pizero-esm",
+    "description": "CHIRIMEN Pi Zero 向けの現行 ESM examples"
+  },
+  {
+    "id": "pre-arranged",
+    "description": "整理前のコントリビューション候補"
+  },
+  {
+    "id": "raspi-node",
+    "description": "Raspberry Pi / Node.js 向け examples"
+  },
+  {
+    "id": "remote",
+    "description": "remote-connection examples"
+  }
+]

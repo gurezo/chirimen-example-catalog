@@ -1,0 +1,48 @@
+[
+  {
+    "deviceId": "adt7410",
+    "deviceDashboardUrl": "https://chirimen-device-dashboard.web.app/devices/adt7410",
+    "examples": [
+      {
+        "platform": "legacy-gc-i2c",
+        "localPath": "examples/devices/adt7410/platforms/legacy-gc-i2c",
+        "upstreamRepository": "chirimen-oh/chirimen",
+        "upstreamPath": "gc/i2c/i2c-ADT7410",
+        "status": "archive",
+        "verified": false
+      },
+      {
+        "platform": "microbit-driver",
+        "localPath": "examples/devices/adt7410/platforms/microbit-driver",
+        "upstreamRepository": "chirimen-oh/chirimen-drivers",
+        "upstreamPath": "microbit-examples/adt7410",
+        "status": "legacy",
+        "verified": false
+      },
+      {
+        "platform": "node",
+        "localPath": "examples/devices/adt7410/platforms/node",
+        "upstreamRepository": "chirimen-oh/chirimen-drivers",
+        "upstreamPath": "node-examples/adt7410",
+        "status": "legacy",
+        "verified": false
+      },
+      {
+        "platform": "pizero-esm",
+        "localPath": "examples/devices/adt7410/platforms/pizero-esm",
+        "upstreamRepository": "chirimen-oh/chirimen.org",
+        "upstreamPath": "pizero/src/esm-examples/adt7410",
+        "status": "primary",
+        "verified": false
+      },
+      {
+        "platform": "raspi-node",
+        "localPath": "examples/devices/adt7410/platforms/raspi-node",
+        "upstreamRepository": "chirimen-oh/chirimen-drivers",
+        "upstreamPath": "raspi-examples/adt7410",
+        "status": "legacy",
+        "verified": false
+      }
+    ]
+  }
+]
