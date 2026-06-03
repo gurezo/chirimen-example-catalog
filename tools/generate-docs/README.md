@@ -47,13 +47,15 @@ catalog/
 `pnpm docs:generate` は catalog を読み込み、以下を生成します。
 
 ```txt
-docs/devices/<device-id>.md    # catalog/device-example-map.json 由来
-docs/platforms/<platform>.md   # catalog/examples.json を platform ごとに集約
+docs/devices/<device-id>.md              # catalog/device-example-map.json 由来
+docs/platforms/<platform>.md             # catalog/examples.json を platform ごとに集約
+docs/appendix/upstream-repositories.md   # catalog/upstreams.json 由来
+docs/appendix/duplicated-devices.md      # catalog/device-example-map.json 由来（2 件以上の Example）
+docs/appendix/deprecated-examples.md     # catalog/examples.json 由来（legacy / archive）
 ```
 
 - 内容が変わったファイルのみ `write-file-if-changed` で書き込みます
 - 商品リンク、商品画像、回路図、データシートは出力しません（device-dashboard を参照）
-- `docs/appendix/*.md` の生成は #52 で追加予定
 
 ## ファイル構成
 
@@ -65,6 +67,7 @@ tools/generate-docs/
     load-catalog.ts
     generate-device-docs.ts
     generate-platform-docs.ts
+    generate-appendix-docs.ts
     write-file-if-changed.ts
     types.ts
 ```
@@ -72,5 +75,6 @@ tools/generate-docs/
 - `load-catalog.ts`: 4 種の catalog JSON を読み込む
 - `generate-device-docs.ts`: `docs/devices/<device-id>.md` を生成
 - `generate-platform-docs.ts`: `docs/platforms/<platform>.md` を生成
+- `generate-appendix-docs.ts`: `docs/appendix/*.md` を生成
 - `write-file-if-changed.ts`: 内容が変わった場合のみファイルを書き込む
 - `types.ts`: catalog の型定義
