@@ -109,6 +109,7 @@ export async function cloneOrFetchSource(
   await rm(dest, { recursive: true, force: true });
   await mkdir(path.dirname(dest), { recursive: true });
   await cp(sourceSubtree, dest, { recursive: true, force: true });
+  await rm(path.join(dest, ".git"), { recursive: true, force: true });
 
   return {
     mirrorPath: dest,
