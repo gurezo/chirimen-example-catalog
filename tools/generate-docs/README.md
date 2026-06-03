@@ -44,7 +44,16 @@ catalog/
 
 ## 現状の動作
 
-初期実装では、catalog を読み込み、各配列の件数をログ出力します。device / platform / appendix の Markdown 生成は後続 issue で追加します。
+`pnpm docs:generate` は catalog を読み込み、以下を生成します。
+
+```txt
+docs/devices/<device-id>.md    # catalog/device-example-map.json 由来
+docs/platforms/<platform>.md   # catalog/examples.json を platform ごとに集約
+```
+
+- 内容が変わったファイルのみ `write-file-if-changed` で書き込みます
+- 商品リンク、商品画像、回路図、データシートは出力しません（device-dashboard を参照）
+- `docs/appendix/*.md` の生成は #52 で追加予定
 
 ## ファイル構成
 
@@ -54,10 +63,14 @@ tools/generate-docs/
   src/
     main.ts
     load-catalog.ts
+    generate-device-docs.ts
+    generate-platform-docs.ts
     write-file-if-changed.ts
     types.ts
 ```
 
 - `load-catalog.ts`: 4 種の catalog JSON を読み込む
-- `write-file-if-changed.ts`: 内容が変わった場合のみファイルを書き込む（#51 以降の generator で使用）
+- `generate-device-docs.ts`: `docs/devices/<device-id>.md` を生成
+- `generate-platform-docs.ts`: `docs/platforms/<platform>.md` を生成
+- `write-file-if-changed.ts`: 内容が変わった場合のみファイルを書き込む
 - `types.ts`: catalog の型定義
