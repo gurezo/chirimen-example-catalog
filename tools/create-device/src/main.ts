@@ -1,7 +1,10 @@
 import { access } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { PLATFORM_DEFINITIONS } from "./platform-definitions.js";
+import { renderDeviceReadme } from "./render-device-readme.js";
 import { renderMetadata } from "./render-metadata.js";
+import { renderPlatformReadme } from "./render-platform-readme.js";
 import { validateDeviceId } from "./validate-device-id.js";
 import { writeFileIfNotExists } from "./write-file-if-not-exists.js";
 
@@ -131,8 +134,37 @@ async function main(): Promise<void> {
   });
   await writeFileIfNotExists(metadataPath, metadataContent);
 
+  const deviceReadmePath = path.join(context.deviceDir, "README.md");
+  const deviceReadmeContent = renderDeviceReadme({
+    deviceId: context.deviceId,
+    deviceName: context.name,
+  });
+  await writeFileIfNotExists(deviceReadmePath, deviceReadmeContent);
+
+  for (const def of PLATFORM_DEFINITIONS) {
+    const platformReadmePath = path.join(
+      context.deviceDir,
+      "platforms",
+      def.platform,
+      "README.md",
+    );
+    const platformReadmeContent = renderPlatformReadme({
+      deviceId: context.deviceId,
+      deviceName: context.name,
+      platform: def.platform,
+      upstreamRepository: def.upstreamRepo,
+      upstreamPath: def.upstreamPathTemplate(context.deviceId),
+      status: def.status,
+    });
+    await writeFileIfNotExists(platformReadmePath, platformReadmeContent);
+  }
+
   console.log(`Created device: ${context.deviceId}`);
   console.log(`  metadata: ${path.relative(repoRoot, metadataPath)}`);
+  console.log(`  readme: ${path.relative(repoRoot, deviceReadmePath)}`);
+  console.log(
+    `  platforms: ${PLATFORM_DEFINITIONS.length} README(s) under platforms/`,
+  );
   if (context.name) {
     console.log(`  name: ${context.name}`);
   }
