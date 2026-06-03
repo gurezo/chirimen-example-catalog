@@ -1,0 +1,32 @@
+name: Upstream sync
+description: upstream repository の同期・差分確認
+title: "Sync upstream: "
+labels:
+  - upstream-sync
+
+body:
+  - type: dropdown
+    id: upstream
+    attributes:
+      label: Upstream
+      options:
+        - chirimen-oh/chirimen.org
+        - chirimen-oh/chirimen-drivers
+        - chirimen-oh/chirimen
+        - chirimen-oh/pre-arrangement-contributions
+        - chirimen-oh/remote-connection
+        - chirimen-oh/chirimen-micro-bit
+    validations:
+      required: true
+
+  - type: textarea
+    id: details
+    attributes:
+      label: 確認したい内容
+      placeholder: |
+        例:
+        - 新しい example が追加されている
+        - 既存 example に変更がある
+        - catalog に反映したい
+    validations:
+      required: true
