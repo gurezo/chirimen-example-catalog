@@ -23,15 +23,28 @@ pnpm device:create adt7410 --name ADT7410 --dashboard-url https://chirimen-devic
 `pnpm device:create` は、次のファイルを **非上書き** で作成します。
 
 ```txt
-examples/devices/<device-id>/metadata.md
+examples/devices/<device-id>/
+  README.md
+  metadata.md
+  platforms/
+    pizero-esm/README.md
+    raspi-node/README.md
+    node/README.md
+    microbit-driver/README.md
+    microbit-web/README.md
+    legacy-gc-gpio/README.md
+    legacy-gc-i2c/README.md
+    remote/README.md
+    pre-arranged/README.md
 ```
 
 - `metadata.md` は Example 管理用メタデータ（platform 別 upstream、推奨 Example、移行メモ）
+- `README.md` は device ディレクトリの概要（platform 一覧、`metadata.md` へのリンク）
+- `platforms/<platform>/README.md` は platform 別 Example の概要（upstream、状態、`src/` 追加の案内）
 - 商品リンク・商品画像・回路図・データシートは [chirimen-device-dashboard](https://github.com/gurezo/chirimen-device-dashboard) を正とし、本 repo では正本として持たない
 - `--name` はデバイス名 / 型番および見出しに反映する
 - `--dashboard-url` は `Device Dashboard` 行に反映する（未指定時は空欄）
-
-`README.md` や `platforms/*/README.md` の生成は Issue #49 で実装予定です。
+- `src/` ディレクトリは初期生成しない
 
 ## deviceId のルール
 
@@ -53,7 +66,10 @@ tools/create-device/
   README.md
   src/
     main.ts
+    platform-definitions.ts
+    render-device-readme.ts
     render-metadata.ts
+    render-platform-readme.ts
     validate-device-id.ts
     write-file-if-not-exists.ts
 ```
