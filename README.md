@@ -63,10 +63,13 @@ examples/devices/<device-id>/
 
 upstream/sources.yaml
 catalog/          # examples.json, platforms.json, device-example-map.json, upstreams.json
-docs/             # HonKit 用ドキュメント
+docs/             # HonKit 用ドキュメント（Markdown ソース）
+public/           # HonKit ビルド成果物（`pnpm docs:build`、git 管理外）
 generated/        # upstream mirror とレポート（自動生成、原則手動編集しない）
 tools/            # 同期・生成・検証スクリプト
 ```
+
+`docs/` 配下の Markdown は HonKit の入力です（`pnpm docs:generate` で `catalog/*.json` から生成されるページを含む）。静的 HTML は `pnpm docs:build` でリポジトリ直下の `public/` に出力し、GitHub Pages デプロイ（`.github/workflows/deploy-docs.yml`）で公開します。
 
 `generated/upstreams/` には upstream の raw mirror（`pnpm sync:upstreams`）を置きます。`generated/reports/` には検証・同期レポート（例: `pnpm duplicates:detect`）を置きます。いずれも tools から生成されるため、原則として手動編集しません。レポートの一覧と注意事項は [generated/reports/README.md](generated/reports/README.md) を参照してください。
 
