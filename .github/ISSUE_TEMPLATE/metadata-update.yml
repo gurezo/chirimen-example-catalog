@@ -1,0 +1,38 @@
+name: Metadata update
+description: 既存デバイスの metadata.md を更新する
+title: "Update metadata: "
+labels:
+  - metadata
+
+body:
+  - type: input
+    id: device-id
+    attributes:
+      label: Device ID
+      description: 例: adt7410, bme280, pca9685
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: update-targets
+    attributes:
+      label: 更新内容
+      options:
+        - label: 基本情報（Device ID / 型番）
+        - label: Device Dashboard リンク
+        - label: Platform 別 Example 一覧
+        - label: 推奨 Example
+        - label: 実機確認
+        - label: 移行メモ
+
+  - type: textarea
+    id: details
+    attributes:
+      label: 詳細
+    validations:
+      required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        **注意**: 商品リンク・回路図・データシート等は [chirimen-device-dashboard](https://github.com/gurezo/chirimen-device-dashboard) で更新してください。
