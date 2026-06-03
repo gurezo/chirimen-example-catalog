@@ -21,6 +21,7 @@
   "devDependencies": {
     "honkit": "latest",
     "tsx": "latest",
-    "typescript": "latest"
+    "typescript": "latest",
+    "yaml": "latest"
   }
 }
