@@ -44,5 +44,73 @@
         "verified": false
       }
     ]
+  },
+  {
+    "deviceId": "bme280",
+    "deviceDashboardUrl": "https://chirimen-device-dashboard.web.app/devices/bme280",
+    "examples": [
+      {
+        "platform": "node",
+        "localPath": "examples/devices/bme280/platforms/node",
+        "upstreamRepository": "chirimen-oh/chirimen-drivers",
+        "upstreamPath": "node-examples/bme280",
+        "status": "legacy",
+        "verified": false
+      },
+      {
+        "platform": "pizero-esm",
+        "localPath": "examples/devices/bme280/platforms/pizero-esm",
+        "upstreamRepository": "chirimen-oh/chirimen.org",
+        "upstreamPath": "pizero/src/esm-examples/bme280",
+        "status": "primary",
+        "verified": false
+      },
+      {
+        "platform": "raspi-node",
+        "localPath": "examples/devices/bme280/platforms/raspi-node",
+        "upstreamRepository": "chirimen-oh/chirimen-drivers",
+        "upstreamPath": "raspi-examples/bme280",
+        "status": "legacy",
+        "verified": false
+      }
+    ]
+  },
+  {
+    "deviceId": "pca9685",
+    "deviceDashboardUrl": "https://chirimen-device-dashboard.web.app/devices/pca9685",
+    "examples": [
+      {
+        "platform": "legacy-gc-i2c",
+        "localPath": "examples/devices/pca9685/platforms/legacy-gc-i2c",
+        "upstreamRepository": "chirimen-oh/chirimen",
+        "upstreamPath": "gc/i2c/i2c-PCA9685",
+        "status": "archive",
+        "verified": false
+      },
+      {
+        "platform": "node",
+        "localPath": "examples/devices/pca9685/platforms/node",
+        "upstreamRepository": "chirimen-oh/chirimen-drivers",
+        "upstreamPath": "node-examples/pca9685",
+        "status": "legacy",
+        "verified": false
+      },
+      {
+        "platform": "pizero-esm",
+        "localPath": "examples/devices/pca9685/platforms/pizero-esm",
+        "upstreamRepository": "chirimen-oh/chirimen.org",
+        "upstreamPath": "pizero/src/esm-examples/pca9685",
+        "status": "primary",
+        "verified": false
+      },
+      {
+        "platform": "raspi-node",
+        "localPath": "examples/devices/pca9685/platforms/raspi-node",
+        "upstreamRepository": "chirimen-oh/chirimen-drivers",
+        "upstreamPath": "raspi-examples/pca9685",
+        "status": "legacy",
+        "verified": false
+      }
+    ]
   }
 ]
