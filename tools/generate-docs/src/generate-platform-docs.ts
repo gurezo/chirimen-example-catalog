@@ -1,13 +1,14 @@
 import path from "node:path";
-import type { Catalog, ExampleEntry, PlatformEntry } from "./types.js";
+import { formatDeviceDashboardLink } from "./format-links.js";
+import {
+  formatUpstreamPathForExample,
+  formatUpstreamRepositoryForExample,
+} from "./find-upstream.js";
+import type { Catalog, ExampleEntry, PlatformEntry, UpstreamEntry } from "./types.js";
 import { writeFileIfChanged } from "./write-file-if-changed.js";
 
 function backtick(value: string): string {
   return `\`${value}\``;
-}
-
-function formatDashboardUrl(url?: string): string {
-  return url ? backtick(url) : "未設定";
 }
 
 function buildDashboardUrlMap(
@@ -48,10 +49,11 @@ function buildPlatformDescriptionMap(
 function renderExamplesTable(
   examples: ExampleEntry[],
   dashboardUrls: Map<string, string | undefined>,
+  upstreams: UpstreamEntry[],
 ): string {
   const rows = examples.map(
     (ex) =>
-      `| ${ex.deviceId} | ${formatDashboardUrl(dashboardUrls.get(ex.deviceId))} | ${backtick(ex.localPath)} | ${backtick(ex.upstreamRepository)} | ${backtick(ex.upstreamPath)} | ${ex.status} |`,
+      `| ${ex.deviceId} | ${formatDeviceDashboardLink(ex.deviceId, dashboardUrls.get(ex.deviceId))} | ${backtick(ex.localPath)} | ${formatUpstreamRepositoryForExample(upstreams, ex)} | ${formatUpstreamPathForExample(upstreams, ex)} | ${ex.status} |`,
   );
   return rows.join("\n");
 }
@@ -61,6 +63,7 @@ export function renderPlatformDoc(
   description: string | undefined,
   examples: ExampleEntry[],
   dashboardUrls: Map<string, string | undefined>,
+  upstreams: UpstreamEntry[],
 ): string {
   const overview = description ?? "説明未設定";
 
@@ -74,7 +77,7 @@ ${overview}
 
 | Device ID | Device Dashboard | Local Path | Upstream Repository | Upstream Path | 状態    |
 | --------- | ---------------- | ----------------------------------------------- | -------------------------- | --------------------------------- | ------- |
-${renderExamplesTable(examples, dashboardUrls)}
+${renderExamplesTable(examples, dashboardUrls, upstreams)}
 `;
 }
 
@@ -98,6 +101,7 @@ export async function generatePlatformDocs(
       descriptions.get(platformId),
       examples,
       dashboardUrls,
+      catalog.upstreams,
     );
     const filePath = path.join(
       repoRoot,

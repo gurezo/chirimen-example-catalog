@@ -8,6 +8,6 @@ Node.js 向け examples
 
 | Device ID | Device Dashboard | Local Path | Upstream Repository | Upstream Path | 状態    |
 | --------- | ---------------- | ----------------------------------------------- | -------------------------- | --------------------------------- | ------- |
-| adt7410 | `https://chirimen-device-dashboard.web.app/devices/adt7410` | `examples/devices/adt7410/platforms/node` | `chirimen-oh/chirimen-drivers` | `node-examples/adt7410` | legacy |
-| bme280 | `https://chirimen-device-dashboard.web.app/devices/bme280` | `examples/devices/bme280/platforms/node` | `chirimen-oh/chirimen-drivers` | `node-examples/bme280` | legacy |
-| pca9685 | `https://chirimen-device-dashboard.web.app/devices/pca9685` | `examples/devices/pca9685/platforms/node` | `chirimen-oh/chirimen-drivers` | `node-examples/pca9685` | legacy |
+| adt7410 | [adt7410](https://chirimen-device-dashboard.web.app/devices/adt7410) | `examples/devices/adt7410/platforms/node` | [chirimen-oh/chirimen-drivers](https://github.com/chirimen-oh/chirimen-drivers) | [node-examples/adt7410](https://github.com/chirimen-oh/chirimen-drivers/tree/master/node-examples/adt7410) | legacy |
+| bme280 | [bme280](https://chirimen-device-dashboard.web.app/devices/bme280) | `examples/devices/bme280/platforms/node` | [chirimen-oh/chirimen-drivers](https://github.com/chirimen-oh/chirimen-drivers) | [node-examples/bme280](https://github.com/chirimen-oh/chirimen-drivers/tree/master/node-examples/bme280) | legacy |
+| pca9685 | [pca9685](https://chirimen-device-dashboard.web.app/devices/pca9685) | `examples/devices/pca9685/platforms/node` | [chirimen-oh/chirimen-drivers](https://github.com/chirimen-oh/chirimen-drivers) | [node-examples/pca9685](https://github.com/chirimen-oh/chirimen-drivers/tree/master/node-examples/pca9685) | legacy |

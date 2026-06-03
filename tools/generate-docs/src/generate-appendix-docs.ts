@@ -1,4 +1,12 @@
 import path from "node:path";
+import {
+  formatRepositoryLink,
+  formatUpstreamPathLink,
+} from "./format-links.js";
+import {
+  formatUpstreamPathForExample,
+  formatUpstreamRepositoryForExample,
+} from "./find-upstream.js";
 import type {
   Catalog,
   DeviceExampleMapEntry,
@@ -25,7 +33,7 @@ export function renderUpstreamRepositoriesDoc(
   const sorted = [...upstreams].sort((a, b) => a.id.localeCompare(b.id));
   const rows = sorted.map(
     (u) =>
-      `| ${u.id} | ${backtick(u.repo)} | ${u.branch} | ${backtick(u.path)} | ${u.platform} | ${u.priority} |`,
+      `| ${u.id} | ${formatRepositoryLink(u.repo)} | ${u.branch} | ${formatUpstreamPathLink(u.repo, u.branch, u.path)} | ${u.platform} | ${u.priority} |`,
   );
 
   return `# 同期元リポジトリ
@@ -65,7 +73,10 @@ ${rows.join("\n")}
 `;
 }
 
-export function renderDeprecatedExamplesDoc(examples: ExampleEntry[]): string {
+export function renderDeprecatedExamplesDoc(
+  examples: ExampleEntry[],
+  upstreams: UpstreamEntry[],
+): string {
   const deprecated = examples
     .filter((ex) => ex.status === "legacy" || ex.status === "archive")
     .sort((a, b) => {
@@ -78,7 +89,7 @@ export function renderDeprecatedExamplesDoc(examples: ExampleEntry[]): string {
 
   const rows = deprecated.map(
     (ex) =>
-      `| ${ex.deviceId} | ${ex.platform} | ${backtick(ex.localPath)} | ${backtick(ex.upstreamRepository)} | ${backtick(ex.upstreamPath)} | ${ex.status} |`,
+      `| ${ex.deviceId} | ${ex.platform} | ${backtick(ex.localPath)} | ${formatUpstreamRepositoryForExample(upstreams, ex)} | ${formatUpstreamPathForExample(upstreams, ex)} | ${ex.status} |`,
   );
 
   return `# 非推奨・旧サンプル一覧
@@ -105,7 +116,7 @@ const APPENDIX_OUTPUTS = [
   {
     relativePath: "docs/appendix/deprecated-examples.md",
     render: (catalog: Catalog) =>
-      renderDeprecatedExamplesDoc(catalog.examples),
+      renderDeprecatedExamplesDoc(catalog.examples, catalog.upstreams),
   },
 ] as const;
 

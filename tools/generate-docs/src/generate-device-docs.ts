@@ -1,5 +1,14 @@
 import path from "node:path";
-import type { Catalog, DeviceExampleMapEntry, ExampleEntry } from "./types.js";
+import { formatDeviceDashboardLink } from "./format-links.js";
+import {
+  formatUpstreamPathForExample,
+  formatUpstreamRepositoryForExample,
+} from "./find-upstream.js";
+import type {
+  DeviceExampleMapEntry,
+  ExampleEntry,
+  UpstreamEntry,
+} from "./types.js";
 import { writeFileIfChanged } from "./write-file-if-changed.js";
 
 const DASHBOARD_NOTE =
@@ -7,10 +16,6 @@ const DASHBOARD_NOTE =
 
 function backtick(value: string): string {
   return `\`${value}\``;
-}
-
-function formatDashboardUrl(url?: string): string {
-  return url ? backtick(url) : "未設定";
 }
 
 function formatVerified(verified: boolean): string {
@@ -23,13 +28,16 @@ function findRecommendedExample(
   return examples.find((ex) => ex.status === "primary");
 }
 
-function renderPlatformExamplesTable(examples: ExampleEntry[]): string {
+function renderPlatformExamplesTable(
+  examples: ExampleEntry[],
+  upstreams: UpstreamEntry[],
+): string {
   const sorted = [...examples].sort((a, b) =>
     a.platform.localeCompare(b.platform),
   );
   const rows = sorted.map(
     (ex) =>
-      `| ${ex.platform} | ${backtick(ex.localPath)} | ${backtick(ex.upstreamRepository)} | ${backtick(ex.upstreamPath)} | ${ex.status} | ${formatVerified(ex.verified)} |`,
+      `| ${ex.platform} | ${backtick(ex.localPath)} | ${formatUpstreamRepositoryForExample(upstreams, ex)} | ${formatUpstreamPathForExample(upstreams, ex)} | ${ex.status} | ${formatVerified(ex.verified)} |`,
   );
   return rows.join("\n");
 }
@@ -46,7 +54,10 @@ function renderRecommendedSection(examples: ExampleEntry[]): string {
 | 実機確認 | ${formatVerified(recommended.verified)} |`;
 }
 
-export function renderDeviceDoc(entry: DeviceExampleMapEntry): string {
+export function renderDeviceDoc(
+  entry: DeviceExampleMapEntry,
+  upstreams: UpstreamEntry[],
+): string {
   const { deviceId, deviceDashboardUrl, examples } = entry;
 
   return `# ${deviceId}
@@ -58,7 +69,7 @@ export function renderDeviceDoc(entry: DeviceExampleMapEntry): string {
 | 項目             | 内容                                   |
 | ---------------- | -------------------------------------- |
 | Device ID        | ${backtick(deviceId)}                  |
-| Device Dashboard | ${formatDashboardUrl(deviceDashboardUrl)} |
+| Device Dashboard | ${formatDeviceDashboardLink(deviceId, deviceDashboardUrl)} |
 
 ${DASHBOARD_NOTE}
 
@@ -66,7 +77,7 @@ ${DASHBOARD_NOTE}
 
 | Platform   | Local Path | Upstream Repository | Upstream Path | 状態    | 実機確認 |
 | ---------- | ----------------------------------------------- | ------------------------------ | --------------------------------- | ------- | -------- |
-${renderPlatformExamplesTable(examples)}
+${renderPlatformExamplesTable(examples, upstreams)}
 
 ## 推奨 Example
 
@@ -77,18 +88,19 @@ ${renderRecommendedSection(examples)}
 }
 
 export async function generateDeviceDocs(
-  catalog: Catalog,
+  upstreams: UpstreamEntry[],
+  deviceExampleMap: DeviceExampleMapEntry[],
   repoRoot: string,
 ): Promise<{ written: number; skipped: number }> {
   let written = 0;
   let skipped = 0;
 
-  const sorted = [...catalog.deviceExampleMap].sort((a, b) =>
+  const sorted = [...deviceExampleMap].sort((a, b) =>
     a.deviceId.localeCompare(b.deviceId),
   );
 
   for (const entry of sorted) {
-    const content = renderDeviceDoc(entry);
+    const content = renderDeviceDoc(entry, upstreams);
     const filePath = path.join(
       repoRoot,
       "docs/devices",
