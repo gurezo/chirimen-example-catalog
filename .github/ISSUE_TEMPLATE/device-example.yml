@@ -1,0 +1,63 @@
+name: Device example
+description: 新しいデバイスの Example を追加する
+title: "Add example: "
+labels:
+  - example
+  - device
+
+body:
+  - type: input
+    id: device-id
+    attributes:
+      label: Device ID
+      description: 例: adt7410, bme280, pca9685
+    validations:
+      required: true
+
+  - type: input
+    id: device-name
+    attributes:
+      label: デバイス名 / 型番
+      description: 例: ADT7410
+    validations:
+      required: true
+
+  - type: input
+    id: device-dashboard-url
+    attributes:
+      label: Device Dashboard URL
+      description: chirimen-device-dashboard 上の該当ページ URL（分かる場合）
+      placeholder: https://chirimen-device-dashboard.web.app/devices/adt7410
+    validations:
+      required: false
+
+  - type: textarea
+    id: examples
+    attributes:
+      label: Platform 別 Example
+      description: 分かる範囲で upstream URL または local path を記入
+      placeholder: |
+        pizero-esm:
+        raspi-node:
+        node:
+        microbit-driver:
+        microbit-web:
+        legacy-gc-gpio:
+        legacy-gc-i2c:
+        remote:
+        pre-arranged:
+    validations:
+      required: false
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: 移行メモ
+      description: 重複 Example の整理方針など
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        **注意**: 商品リンク・回路図・データシート等は [chirimen-device-dashboard](https://github.com/gurezo/chirimen-device-dashboard) で管理します。
