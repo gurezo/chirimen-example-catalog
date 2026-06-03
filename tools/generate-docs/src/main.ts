@@ -18,7 +18,11 @@ async function main(): Promise<void> {
   console.log(`Loaded device maps: ${catalog.deviceExampleMap.length}`);
   console.log(`Loaded upstreams: ${catalog.upstreams.length}`);
 
-  const deviceResult = await generateDeviceDocs(catalog, repoRoot);
+  const deviceResult = await generateDeviceDocs(
+    catalog.upstreams,
+    catalog.deviceExampleMap,
+    repoRoot,
+  );
   console.log(
     `Device docs: ${deviceResult.written} written, ${deviceResult.skipped} unchanged`,
   );
