@@ -1,0 +1,53 @@
+name: Generate catalog
+
+on:
+  pull_request:
+    paths:
+      - "examples/devices/**/metadata.md"
+      - "catalog/**"
+      - "tools/generate-catalog/**"
+      - "package.json"
+      - "pnpm-lock.yaml"
+      - "pnpm-workspace.yaml"
+      - ".github/workflows/generate-catalog.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "examples/devices/**/metadata.md"
+      - "catalog/**"
+      - "tools/generate-catalog/**"
+      - "package.json"
+      - "pnpm-lock.yaml"
+      - "pnpm-workspace.yaml"
+      - ".github/workflows/generate-catalog.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  generate-catalog:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Generate catalog
+        run: pnpm catalog:generate
+
+      - name: Show generated catalog diff
+        run: |
+          git diff -- catalog || true
