@@ -1,7 +1,9 @@
 import { access } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { renderMetadata } from "./render-metadata.js";
 import { validateDeviceId } from "./validate-device-id.js";
+import { writeFileIfNotExists } from "./write-file-if-not-exists.js";
 
 const repoRoot = path.resolve(
   path.dirname(fileURLToPath(import.meta.url)),
@@ -121,14 +123,22 @@ async function main(): Promise<void> {
   const context = buildCreateDeviceContext(args);
   await assertDeviceDirNotExists(context.deviceDir);
 
-  console.log(`Ready to create device: ${context.deviceId}`);
+  const metadataPath = path.join(context.deviceDir, "metadata.md");
+  const metadataContent = renderMetadata({
+    deviceId: context.deviceId,
+    name: context.name,
+    dashboardUrl: context.dashboardUrl,
+  });
+  await writeFileIfNotExists(metadataPath, metadataContent);
+
+  console.log(`Created device: ${context.deviceId}`);
+  console.log(`  metadata: ${path.relative(repoRoot, metadataPath)}`);
   if (context.name) {
     console.log(`  name: ${context.name}`);
   }
   if (context.dashboardUrl) {
     console.log(`  dashboard-url: ${context.dashboardUrl}`);
   }
-  console.log(`  device-dir: ${path.relative(repoRoot, context.deviceDir)}`);
 }
 
 main().catch((err: unknown) => {
