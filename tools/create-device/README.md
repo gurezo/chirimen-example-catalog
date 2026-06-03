@@ -18,6 +18,21 @@ pnpm device:create adt7410 --name ADT7410
 pnpm device:create adt7410 --name ADT7410 --dashboard-url https://chirimen-device-dashboard.web.app/devices/adt7410
 ```
 
+## 生成物
+
+`pnpm device:create` は、次のファイルを **非上書き** で作成します。
+
+```txt
+examples/devices/<device-id>/metadata.md
+```
+
+- `metadata.md` は Example 管理用メタデータ（platform 別 upstream、推奨 Example、移行メモ）
+- 商品リンク・商品画像・回路図・データシートは [chirimen-device-dashboard](https://github.com/gurezo/chirimen-device-dashboard) を正とし、本 repo では正本として持たない
+- `--name` はデバイス名 / 型番および見出しに反映する
+- `--dashboard-url` は `Device Dashboard` 行に反映する（未指定時は空欄）
+
+`README.md` や `platforms/*/README.md` の生成は Issue #49 で実装予定です。
+
 ## deviceId のルール
 
 - 小文字英数字
@@ -29,11 +44,7 @@ pnpm device:create adt7410 --name ADT7410 --dashboard-url https://chirimen-devic
 
 拒否例: `ADT7410`, `BME280`, `i2c_ADT7410`
 
-## 現時点のスコープ
-
-Issue #47 時点では、CLI 引数の解析・`deviceId` 検証・既存ディレクトリの上書き防止・後続処理向け `CreateDeviceContext` の構築までを行います。
-
-`metadata.md` や README の生成は後続 issue (#48 以降) で実装します。
+既に `examples/devices/<device-id>/` が存在する場合はエラーにし、上書きしません。
 
 ## ファイル構成
 
@@ -42,8 +53,7 @@ tools/create-device/
   README.md
   src/
     main.ts
+    render-metadata.ts
     validate-device-id.ts
     write-file-if-not-exists.ts
 ```
-
-`write-file-if-not-exists.ts` は、後続 issue でファイル生成する際に利用する非上書き書き込みユーティリティです。
