@@ -5,3 +5,5 @@
 | Device ID | Platforms                                                    | Upstreams                                |
 | --------- | ------------------------------------------------------------ | ---------------------------------------- |
 | adt7410 | legacy-gc-i2c, microbit-driver, node, pizero-esm, raspi-node | chirimen, chirimen-drivers, chirimen.org |
+| bme280 | node, pizero-esm, raspi-node | chirimen-drivers, chirimen.org |
+| pca9685 | legacy-gc-i2c, node, pizero-esm, raspi-node | chirimen, chirimen-drivers, chirimen.org |
