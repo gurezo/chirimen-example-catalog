@@ -14,7 +14,7 @@
     "docs:generate": "tsx tools/generate-docs/src/main.ts",
     "metadata:validate": "tsx tools/validate-metadata/src/main.ts",
     "duplicates:detect": "tsx tools/detect-duplicates/src/main.ts",
-    "docs:build": "honkit build docs public",
+    "docs:build": "honkit build docs ../public",
     "validate": "pnpm metadata:validate && pnpm catalog:generate && pnpm docs:generate",
     "build": "pnpm docs:generate && pnpm docs:build"
   },
