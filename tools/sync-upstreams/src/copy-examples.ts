@@ -31,8 +31,11 @@ function platformDir(repoRoot: string, deviceId: string, platform: string): stri
   return path.join(repoRoot, "examples/devices", deviceId, "platforms", platform);
 }
 
-function isUnderSrc(relativePath: string): boolean {
-  return relativePath === "src" || relativePath.startsWith("src/");
+function destRelativePath(relativePath: string): string {
+  if (relativePath === "src" || relativePath.startsWith("src/")) {
+    return relativePath;
+  }
+  return path.posix.join("src", relativePath.split(path.sep).join(path.posix.sep));
 }
 
 async function hasManagedMarker(filePath: string): Promise<boolean> {
@@ -117,25 +120,21 @@ export async function copyExamples(
       continue;
     }
 
-    if (!isUnderSrc(rel)) {
-      log.push(logEntry(params, upstreamDirName, rel, "skipped-non-src"));
-      continue;
-    }
-
+    const destRel = destRelativePath(rel);
     const srcFile = path.join(params.upstreamExamplePath, rel);
-    const destFile = path.join(destPlatformDir, rel);
+    const destFile = path.join(destPlatformDir, destRel);
     const destExists = await pathExists(destFile);
 
     if (destExists) {
       if (!(await hasManagedMarker(destFile))) {
-        log.push(logEntry(params, upstreamDirName, rel, "skipped-no-marker"));
+        log.push(logEntry(params, upstreamDirName, destRel, "skipped-no-marker"));
         continue;
       }
     }
 
     await mkdir(path.dirname(destFile), { recursive: true });
     await copyFile(srcFile, destFile);
-    log.push(logEntry(params, upstreamDirName, rel, "copied"));
+    log.push(logEntry(params, upstreamDirName, destRel, "copied"));
   }
 
   return log;
