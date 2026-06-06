@@ -6,6 +6,13 @@ labels:
   - device
 
 body:
+  - type: markdown
+    attributes:
+      value: |
+        **このリポジトリはアーカイブ済み（読み取り専用）です。**
+
+        Platform 別 Example の追加・更新は [chirimen-device-dashboard](https://github.com/gurezo/chirimen-device-dashboard) の [`data/platform-examples/`](https://github.com/gurezo/chirimen-device-dashboard/blob/main/data/platform-examples/README.md) で行ってください。
+
   - type: input
     id: device-id
     attributes:
