@@ -1,9 +1,9 @@
+# アーカイブ済みリポジトリのため、定期実行（schedule）は停止しています。
+# workflow_dispatch は fork 利用者向けの手動実行用として残しています。
 name: Sync upstream examples
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "17 19 * * 0"
 
 permissions:
   contents: write
