@@ -5,6 +5,13 @@ labels:
   - upstream-sync
 
 body:
+  - type: markdown
+    attributes:
+      value: |
+        **このリポジトリはアーカイブ済み（読み取り専用）です。**
+
+        upstream 同期・差分確認は [chirimen-device-dashboard](https://github.com/gurezo/chirimen-device-dashboard) の `sync:example-upstreams` で行ってください。
+
   - type: dropdown
     id: upstream
     attributes:
